@@ -77,7 +77,8 @@ class Price(object):
         p = Pool(5)
         for i in new_journalId_list:
             p.apply_async(self.get_price, args=(i,))
-            print(i)
+            query = Price_Catalog.update(exist_price=True).where(Price_Catalog.id == i)
+            query.execute()
         p.close()
         p.join()
         if mode ==0 and len(new_journalId_list) > 0:
