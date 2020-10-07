@@ -18,7 +18,7 @@ def Get_name(cityid):
     elif cityid == 5:
         Price = TS_Price
 
-    for i in Price.select().iterator():
+    for i in Price(cityid).select().iterator():
         if i.name not in name_list:
             name_list.append(i.name)
     return name_list
