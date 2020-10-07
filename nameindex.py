@@ -8,17 +8,17 @@ from multiprocessing import Pool
 def Get_name(cityid):
     name_list = []
     if cityid == 1:
-        Price = JM_Price
+        p = JM_Price
     elif cityid == 2:
-        Price = XH_Price
+        p = XH_Price
     elif cityid == 3:
-        Price = EP_Price
+        p = EP_Price
     elif cityid == 4:
-        Price = KP_Price
+        p = KP_Price
     elif cityid == 5:
-        Price = TS_Price
+        p = TS_Price
 
-    for i in Price(cityid).select().iterator():
+    for i in p.select().iterator():
         if i.name not in name_list:
             name_list.append(i.name)
     return name_list
