@@ -44,6 +44,7 @@ class TS_Price(BasePrice):
     pass
 
 class Name_Index(BaseModel):
+    id = IntegerField()	
     name = CharField()
     cityid = IntegerField()
 
