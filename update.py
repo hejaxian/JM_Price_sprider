@@ -24,3 +24,4 @@ if __name__ == "__main__":
         p.apply_async(Build_Index, args=(i,))
     p.close()
     p.join()
+    sys.exit()
