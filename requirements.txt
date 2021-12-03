@@ -8,6 +8,6 @@ peewee==3.14.3
 pycparser==2.18
 PyMySQL==1.0.2
 pytz==2021.3
-requests==2.20.0
+requests==2.26.0
 six==1.11.0
 urllib3==1.26.5
