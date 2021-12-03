@@ -11,9 +11,9 @@ class Catalog(object):
     def __init__(self,cityid):
         self.cityid = cityid
 
-    def update_catalog(self,mode=0):
+    def update_catalog(self,page=1,pagesize=10):
         #构造请求数据
-        form_data = {'params[isLock]':0,'params[cityid]':self.cityid, 'page': 1, 'pageSize':100000}
+        form_data = {'params[isLock]':0,'params[cityid]':self.cityid, 'page': page, 'pageSize':pagesize}
         #向服务器获取数据
         url = 'http://www.jmgczj.com/views/getMatPirces.json'
         requests_result = requests.post(url, data=form_data).json()['results']
@@ -39,10 +39,14 @@ class Catalog(object):
             for catalog in data:
                 try:
                     Price_Catalog.create(**catalog)
-                    if mode == 0:
-                        catalogid = int(catalog['id'])
-                        log_text = f"更新目录数据一条,id为{catalogid}."
-                        Sprider_log.create(type="Update_catalog", issue=log_text, time=datetime.datetime.now(pytz.timezone("Asia/Shanghai")))
-                        db.close()
                 except:
                     pass
+        try:
+            catalog_count = len(data)
+            log_text = f"更新目录数据{catalog_count}条."
+            Sprider_log.create(type="Update_catalog", issue=log_text,
+                           time=datetime.datetime.now(pytz.timezone("Asia/Shanghai")))
+        except:
+            pass
+        db.close()
+

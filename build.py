@@ -13,7 +13,14 @@ def build():
     # 生成目录
     city_list = [1, 2, 3, 4, 5]
     for city in city_list:
-        Catalog(city).update_catalog(1)
+        Catalog(city).update_catalog(1,10)
+        num = 1
+        while True:
+            try:
+                num = num+1
+                Catalog(city).update_catalog(num,10)
+            except:
+                break
     # 采集价格
     for city in city_list:
         Price(city).update_price(1)

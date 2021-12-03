@@ -3,14 +3,13 @@
 from peewee import *
 from playhouse.pool import PooledMySQLDatabase
 
-db = PooledMySQLDatabase('MYSQL_DATABASE',host='MYSQL_HOST',passwd='MYSQL_PASSWD',user='MYSQL_USER',charset='utf8mb4', max_connections=128,stale_timeout=300)
-
+db = PooledMySQLDatabase('MYSQL_DATABASE',host='MYSQL_HOST',port='MYSQL_PORT'，passwd='MYSQL_PASSWD',user='MYSQL_USER',charset='utf8mb4', max_connections=128,stale_timeout=300)
 class BaseModel(Model):
     class Meta:
         database = db
 
 class Price_Catalog(BaseModel):
-    id, matCount = IntegerField(unique=True), IntegerField()
+    id, matCount = PrimaryKeyField(), IntegerField()
     issueDate, postDate = DateField(), DateField()
     pricescope, cityid  = IntegerField(), IntegerField()
     exist_price = BooleanField(default=False)
@@ -44,7 +43,7 @@ class TS_Price(BasePrice):
     pass
 
 class Name_Index(BaseModel):
-    id = IntegerField()	
+    id = AutoField()
     name = CharField()
     cityid = IntegerField()
 

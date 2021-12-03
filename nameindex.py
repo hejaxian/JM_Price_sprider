@@ -1,24 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #加载数据库模型
-from database import JM_Price,XH_Price,EP_Price,KP_Price,TS_Price,Name_Index
+from database import db,JM_Price,XH_Price,EP_Price,KP_Price,TS_Price,Name_Index
 #引入多线程
 from multiprocessing import Pool
 
 def Get_name(cityid):
     name_list = []
-    if cityid == 1:
-        pr = JM_Price
-    elif cityid == 2:
-        pr = XH_Price
-    elif cityid == 3:
-        pr = EP_Price
-    elif cityid == 4:
-        pr = KP_Price
-    elif cityid == 5:
-        pr = TS_Price
-
-    for i in pr.select().iterator():
+    city_list = [1, 2, 3, 4, 5]
+    database_list = [JM_Price, XH_Price, EP_Price, KP_Price, TS_Price]
+    cityid_index = city_list.index(cityid)
+    database = database_list[cityid_index]
+    for i in database.select():
         if i.name not in name_list:
             name_list.append(i.name)
     return name_list
@@ -26,8 +19,9 @@ def Get_name(cityid):
 def Push_to_db(name_list,cityid):
     data = []
     for name in name_list:
-        index_data = {'name':name,'cityid':cityid}
+        index_data = {'name':name, 'cityid':cityid}
         data.append(index_data)
+    print(data)
     Name_Index.insert_many(data).execute()
 
 def Build_Index(cityid):
