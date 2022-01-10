@@ -43,9 +43,10 @@ class Catalog(object):
                     pass
         try:
             catalog_count = len(data)
-            log_text = f"更新目录数据{catalog_count}条."
-            Sprider_log.create(type="Update_catalog", issue=log_text,
-                           time=datetime.datetime.now(pytz.timezone("Asia/Shanghai")))
+            if catalog_count > 0:
+                log_text = f"更新目录数据{catalog_count}条."
+                Sprider_log.create(type="Update_catalog", issue=log_text,
+                                   time=datetime.datetime.now(pytz.timezone("Asia/Shanghai")))
         except:
             pass
         db.close()
