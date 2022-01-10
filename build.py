@@ -15,7 +15,7 @@ def build():
     for city in city_list:
         Catalog(city).update_catalog(1,10)
         num = 1
-        while True:
+        while num < 100:
             try:
                 num = num+1
                 Catalog(city).update_catalog(num,10)
