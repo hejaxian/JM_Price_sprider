@@ -21,7 +21,7 @@ def Push_to_db(name_list,cityid):
     for name in name_list:
         index_data = {'name':name, 'cityid':cityid}
         data.append(index_data)
-    print(data)
+    #print(data)
     Name_Index.insert_many(data).execute()
 
 def Build_Index(cityid):
