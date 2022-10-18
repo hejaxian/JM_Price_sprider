@@ -5,7 +5,7 @@ import sys
 from catalog import Catalog
 from price import Price
 from fixdata import Auto_fix_JM,Autofull_Date
-#from nameindex import Build_Index
+from nameindex import Build_Index
 from multiprocessing.dummy import Pool
 
 if __name__ == "__main__":
