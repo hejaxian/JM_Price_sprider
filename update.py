@@ -19,7 +19,7 @@ if __name__ == "__main__":
     #修正数据
     Autofull_Date()
     Auto_fix_JM()
-    生成索引
+    #生成索引
     p = Pool(5)
     for i in city_list:
         p.apply_async(Build_Index, args=(i,))
