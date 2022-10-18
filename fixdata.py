@@ -145,15 +145,17 @@ def RQ(cityid):
 
 def Autofull_Date():
     cityid_list = [1,2,3,4,5]
-    TP = Pool(2)
-    TP.map(RQ, cityid_list)
-    TP.close()
-    TP.join()
-
+    #TP = Pool(2)
+    #TP.map(RQ, cityid_list)
+    #TP.close()
+    #TP.join()
+    #修改为单线程
+    map(RQ, cityid_list)
+    
 #自动修复
 def Auto_fix_JM():
     function_list = [Cleannull, PT_hnt, BS_hnt, FS_hnt, GD_cailiao, GJ_YG, GJ_LWG, RQ]
-    pool = Pool(2)
+    pool = Pool(1)
     for func in function_list:
         pool.apply_async(func)
     pool.close()
