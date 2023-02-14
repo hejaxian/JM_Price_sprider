@@ -22,7 +22,7 @@ class Price(object):
         form_data = {'params[specclass]':'','params[keyword]':'','params[journalId]':journalId,'params[spec]':'','page':'1','pageSize':1000000}
         headers = {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','Accept':'application/json, text/javascript, */*; q=0.01'}
         #向服务器获取数据
-        url = 'http://www.jmgczj.com/views/getPriceList.json'
+        url = 'https://www.jmgczj.com/views/getPriceList.json'
         requests_result = requests.post(url, data=form_data,headers=headers).json()['results']
         # 构建一个空列表
         data = []

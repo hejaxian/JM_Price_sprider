@@ -15,7 +15,7 @@ class Catalog(object):
         #构造请求数据
         form_data = {'params[isLock]':0,'params[cityid]':self.cityid, 'page': page, 'pageSize':pagesize}
         #向服务器获取数据
-        url = 'http://www.jmgczj.com/views/getMatPirces.json'
+        url = 'https://www.jmgczj.com/views/getMatPirces.json'
         requests_result = requests.post(url, data=form_data).json()['results']
         # 构建一个空列表
         data = []
